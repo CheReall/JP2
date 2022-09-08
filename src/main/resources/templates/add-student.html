@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Title</title>
+</head>
+<body style="background-color: #FFF8E7">
+
+<form th:action="${'/student-save'}" method="post">
+  <input type="text" name="surname" placeholder="Фамилия">
+  <input type="text" name="name" placeholder="Имя">
+  <input type="text" name="middlename" placeholder="Отчество">
+  <input type="Date" name="birthday" placeholder="Дата рождения">
+  <input type="text" name="gruppa" placeholder="Группа">
+  <input type="text" name="phone" placeholder="Телефон">
+  <button type="submit">Добавить</button>
+</form>
+
+</body>
+</html>

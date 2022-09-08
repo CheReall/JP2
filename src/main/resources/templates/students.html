@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>JP2</title>
+</head>
+<body style="background-color: #FFF8E7">
+    <table>
+        <thead>
+            <td>
+                <tr><h1>Студенты</h1></tr>
+                </tr><h2><a href="/students-search">Найти</a></h2></tr>
+            </td>
+        </thead>
+        <tbody>
+        <td>
+            <tr th:each="el : ${students}">
+                <h2 th:text="${el.surname}" style="display: inline-block"></h2>
+                <h2 th:text="' '+${el.name}" style="display: inline-block"></h2>
+                <h2 th:text="' '+${el.middlename}" style="display: inline-block"></h2>
+                <h2 th:text="'Дата рождения '+${el.birthday}"></h2>
+                <h2 th:text="'Группа '+${el.gruppa}"></h2>
+                <h2 th:text="'Телефон '+${el.phone}"></h2>
+            </tr>
+        </td>
+        </tbody>
+        <tfoot>
+            <td>
+                <tr style="text-align: center"><h2><a href="/add-student">Добавить студента</a></h2></tr>
+            </td>
+        </tfoot>
+    </table>
+</body>
+</html>
