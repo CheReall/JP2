@@ -2,33 +2,44 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>JP2</title>
+    <title>Преподаватели</title>
 </head>
 <body style="background-color: #FFF8E7">
-<!--    <header th:insert="blocks/shablon"></header>-->
-<table align="center">
-    <thead>
-    <td>
-        <tr><h1>Преподаватели</h1></tr>
-        <tr><h2><a href="/teachers-search">Найти</a></h2></tr>
-    </td>
-    </thead>
-    <tbody>
-    <td>
-        <tr th:each="el : ${teachers}">
-            <h2 th:text="${el.surname}" style="display: inline-block"></h2>
-            <h2 th:text="${el.name}" style="display: inline-block"></h2>
-            <h2 th:text="${el.middlename}" style="display: inline-block"></h2>
-            <h2 th:text="'Предметы: '+${el.lessons}"></h2>
-            <h2 th:text="'График работы - '+${el.graphic}"></h2>
-        </tr>
-    </td>
-    </tbody>
-    <tfoot>
-    <td>
-        <tr style="text-align: center"><h2><a href="/add-teacher">Добавить преподавателя</a></h2></tr>
-    </td>
-    </tfoot>
-</table>
+<header th:insert="blocks/headerTeachers"></header>
+<div align="center">
+    <h1>Все преподаватели</h1>
+    <h2><a href="/teachers-search">Поиск по фамилии</a></h2>
+    <h2>_________________________________________________________</h2>
+    <div th:each="el : ${teachers}">
+        <h1 th:text="${el.surname+' '}" style="display: inline-block"></h1>
+        <h1 th:text="${el.name+' '}" style="display: inline-block"></h1>
+        <h1 th:text="${el.middlename}" style="display: inline-block"></h1>
+        <h2 th:text="'Предметы: '+${el.lessons}"></h2>
+        <h2 th:text="'График работы - '+${el.graphic}"></h2>
+        <h2>_________________________________________________________</h2>
+    </div>
+    <h2><a href="/add-teacher">Добавить преподавателя</a></h2>
+</div>
 </body>
+
+<style>
+    h1{
+        color: #111;
+        font-family: ‘Helvetica Neue’, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+    }
+    h2{
+        color: #111;
+        font-family: ‘Open Sans’, sans-serif;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+</style>
+
 </html>

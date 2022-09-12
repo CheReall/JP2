@@ -4,7 +4,6 @@ import com.example.JP2.Models.StudentModel;
 import com.example.JP2.Models.TeacherModel;
 import com.example.JP2.Repo.StudentRepository;
 import com.example.JP2.Repo.TeacherRepository;
-import com.sun.xml.bind.api.Bridge;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -71,11 +70,11 @@ public class MainController {
     // Отображение страниц поиска студентов и преподавателей
     @GetMapping("/students-search")
     public String SearchS(){
-        return "students-search";
+        return "search-students";
     }
     @GetMapping("/teachers-search")
     public String SearchT(){
-        return "teachers-search";
+        return "search-theachers";
     }
 
     // Обработка форм поиска студентов и преподавателей
@@ -83,12 +82,12 @@ public class MainController {
     public String SearchStudent (@RequestParam String surname, Model model){
         List<StudentModel> result = studentRepository.findBySurnameContains(surname);
         model.addAttribute("result", result);
-        return "students-search";
+        return "search-students";
     }
     @PostMapping("/teachers-search-process")
     public String SearchTeacher (@RequestParam String surname, Model model){
-        List<TeacherModel> result = teacherRepository.findBySurname(surname);
+        List<TeacherModel> result = teacherRepository.findBySurnameContains(surname);
         model.addAttribute("result", result);
-        return "teachers-search";
+        return "search-theachers";
     }
 }

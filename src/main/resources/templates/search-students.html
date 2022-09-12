@@ -7,21 +7,21 @@
 <body style="background-color: #FFF8E7">
     <header th:insert="blocks/headerStudents"></header>
     <div align="center">
-        <h1 style="margin-top: 20px">Все студенты</h1>
-        <h2><a href="/students-search">Поиск по фамилии</a></h2>
+        <h1 style="margin-top: 20px">Поиск по фамилии</h1>
+        <form method="post" th:action="${'/students-search-process'}" style="margin-top: 20px">
+            <input type="text" name="surname" style="display: inline-block; width: 250px; margin-right: 20px">
+            <button type="submit" style="display: inline-block; width: auto; height: auto"><img src="icon-search.png" alt="Поиск"></button>
+        </form>
         <h2>_________________________________________________________</h2>
-        <div th:each="el : ${students}">
+        <div th:each="el : ${result}">
             <h1 th:text="${el.surname}" style="display: inline-block"></h1>
             <h1 th:text="${el.name}" style="display: inline-block"></h1>
             <h1 th:text="${el.middlename}" style="display: inline-block"></h1>
             <h2 th:text="'Дата рождения: '+${el.birthday}"></h2>
             <h2 th:text="'Группа: '+${el.gruppa}"></h2>
             <h2 th:text="'Телефон: '+${el.phone}"></h2>
-            <button>Редактировать</button>
-            <button>Удалить</button>
             <h2>_________________________________________________________</h2>
         </div>
-        <h2><a href="/add-student">Добавить студента</a></h2>
     </div>
 </body>
 
@@ -45,4 +45,4 @@
     }
 </style>
 
-</html>,,,
+</html>

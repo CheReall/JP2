@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface TeacherRepository extends CrudRepository<TeacherModel, Long>{
 
-    List<TeacherModel> findBySurname(String surname);
+    List<TeacherModel> findBySurnameContains(String surname);
 }
