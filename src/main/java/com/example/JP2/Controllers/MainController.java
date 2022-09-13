@@ -30,23 +30,23 @@ public class MainController {
     public String Teachers(Model model){
         Iterable<TeacherModel> teachers = teacherRepository.findAll();
         model.addAttribute("teachers", teachers);
-        return "teachers";
+        return "teach/teachers";
     }
     @GetMapping("/students")
     public String Students(Model model){
         Iterable<StudentModel> students = studentRepository.findAll();
         model.addAttribute("students", students);
-        return "students";
+        return "stud/students";
     }
 
     // Отображение форм добавления записи
     @GetMapping("/add-teacher")
     public String AddTeacher(Model model){
-        return "add-teacher";
+        return "teach/add-teacher";
     }
     @GetMapping("/add-student")
     public String AddStudent(Model model){
-        return "add-student";
+        return "stud/add-student";
     }
 
     //    Обработка форм добавления студентов и преподавателей
@@ -70,11 +70,11 @@ public class MainController {
     // Отображение страниц поиска студентов и преподавателей
     @GetMapping("/students-search")
     public String SearchS(){
-        return "search-students";
+        return "stud/search-students";
     }
     @GetMapping("/teachers-search")
     public String SearchT(){
-        return "search-theachers";
+        return "teach/search-theachers";
     }
 
     // Обработка форм поиска студентов и преподавателей
@@ -82,12 +82,12 @@ public class MainController {
     public String SearchStudent (@RequestParam String surname, Model model){
         List<StudentModel> result = studentRepository.findBySurnameContains(surname);
         model.addAttribute("result", result);
-        return "search-students";
+        return "stud/search-students";
     }
     @PostMapping("/teachers-search-process")
     public String SearchTeacher (@RequestParam String surname, Model model){
         List<TeacherModel> result = teacherRepository.findBySurnameContains(surname);
         model.addAttribute("result", result);
-        return "search-theachers";
+        return "teach/search-theachers";
     }
 }

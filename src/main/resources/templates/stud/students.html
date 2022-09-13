@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Студенты</title>
+</head>
+<body style="background-color: #FFF8E7">
+    <header th:insert="blocks/headerStudents"/>
+    <div align="center">
+        <h1 style="margin-top: 20px">Все студенты</h1>
+        <h2><a href="/students-search">Поиск по фамилии</a></h2>
+        <h2>_________________________________________________________</h2>
+        <div th:each="el : ${students}">
+            <h1 th:text="${el.surname}" style="display: inline-block"></h1>
+            <h1 th:text="${el.name}" style="display: inline-block"></h1>
+            <h1 th:text="${el.middlename}" style="display: inline-block"></h1>
+            <h2 th:text="'Группа: '+${el.gruppa}"></h2>
+            <h2><a th:href="'/more-student/'+${el.ID}">Подробнее</a></h2>
+            <h2>_________________________________________________________</h2>
+        </div>
+        <h2><a href="/add-student">Добавить студента</a></h2>
+    </div>
+</body>
+
+<style>
+    h1{
+        color: #111;
+        font-family: ‘Helvetica Neue’, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+    }
+    h2{
+        color: #111;
+        font-family: ‘Open Sans’, sans-serif;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+</style>
+
+</html>

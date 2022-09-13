@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Преподаватели</title>
+</head>
+<body style="background-color: #FFF8E7">
+  <header th:insert="blocks/headerTeachers"/>
+  <div align="center">
+    <h1 style="margin: 20px">Редактирование записи</h1>
+    <div th:each="el : ${editTeacher}">
+      <form method="post">
+        <input type="text" th:value="${el.surname}" name="name" placeholder="Фамилия" class="pole"><br/>
+        <input type="text" th:value="${el.name}" name="surname" placeholder="Имя" class="pole"><br/>
+        <input type="text" th:value="${el.middlename}" name="middlename" placeholder="Отчество" class="pole"><br/>
+        <input type="text" th:value="${el.lessons}" name="lessons" placeholder="Предметы" class="pole"><br/>
+        <input type="text" th:value="${el.graphic}" name="graphic" placeholder="График работы" class="pole"><br/>
+        <button type="submit">Сохранить изменения</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+<style>
+  h1{
+    color: #111;
+    font-family: ‘Helvetica Neue’, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+  }
+  .pole{
+    margin: 10px;
+    width: 250px;
+  }
+</style>
+
+</html>

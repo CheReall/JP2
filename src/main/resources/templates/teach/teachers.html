@@ -5,7 +5,7 @@
     <title>Преподаватели</title>
 </head>
 <body style="background-color: #FFF8E7">
-<header th:insert="blocks/headerTeachers"></header>
+<header th:insert="blocks/headerTeachers"/>
 <div align="center">
     <h1>Все преподаватели</h1>
     <h2><a href="/teachers-search">Поиск по фамилии</a></h2>
@@ -16,6 +16,8 @@
         <h1 th:text="${el.middlename}" style="display: inline-block"></h1>
         <h2 th:text="'Предметы: '+${el.lessons}"></h2>
         <h2 th:text="'График работы - '+${el.graphic}"></h2>
+        <form th:action="'/edit-teacher/'+${el.ID}" method="get" style="margin: 10px; display: inline-block"><button type="submit">Редактировать</button></form>
+        <form th:action="'/remove-teacher/'+${el.ID}" method="post" style="display: inline-block"><button type="submit">Удалить</button></form>
         <h2>_________________________________________________________</h2>
     </div>
     <h2><a href="/add-teacher">Добавить преподавателя</a></h2>

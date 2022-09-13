@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Студенты</title>
+</head>
+<body style="background-color: #FFF8E7">
+  <header th:insert="blocks/headerStudents"/>
+  <div align="center">
+    <h1 style="margin: 20px">Редактирование записи</h1>
+    <div th:each="el : ${editStudent}">
+      <form method="post">
+        <input type="text" th:value="${el.surname}" name="name" placeholder="Фамилия" class="pole"><br/>
+        <input type="text" th:value="${el.name}" name="surname" placeholder="Имя" class="pole"><br/>
+        <input type="text" th:value="${el.middlename}" name="middlename" placeholder="Отчество" class="pole"><br/>
+        <h style="font-family: ‘Open Sans’, sans-serif; font-size: 15pt">Дата рождения</h><br>
+        <input type="Date" th:value="${el.birthday}" name="birthday" style="width: 250px; margin-bottom: 10px"><br>
+        <input type="text" th:value="${el.gruppa}" name="gruppa" placeholder="Группа" class="pole"><br/>
+        <input type="text" th:value="${el.phone}" name="phone" placeholder="Телефон" class="pole"><br/>
+        <button type="submit">Сохранить изменения</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+<style>
+  h1{
+    color: #111;
+    font-family: ‘Helvetica Neue’, sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    line-height: 1;
+    text-align: center;
+  }
+  .pole{
+    margin: 10px;
+    width: 250px;
+  }
+</style>
+
+</html>

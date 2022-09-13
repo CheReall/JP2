@@ -6,14 +6,15 @@
   <title>Title</title>
 </head>
 <body style="background-color: #FFF8E7">
-  <header th:insert="blocks/shablon"></header>
+  <header th:insert="blocks/headerStudents"/>
   <div align="center">
+    <h1 style="margin: 20px">Добавление студента</h1>
     <form th:action="${'/student-save'}" method="post">
       <input type="text" name="surname" placeholder="Фамилия" class="pole"><br>
       <input type="text" name="name" placeholder="Имя" class="pole"><br>
       <input type="text" name="middlename" placeholder="Отчество" class="pole"><br>
       <h style="font-family: ‘Open Sans’, sans-serif; font-size: 15pt">Дата рождения</h><br>
-      <input type="Date" name="birthday" placeholder="Дата рождения" style="width: 250px; margin-bottom: 10px"><br>
+      <input type="Date" name="birthday" style="width: 250px; margin-bottom: 10px"><br>
       <input type="text" name="gruppa" placeholder="Группа" class="pole"><br>
       <input type="text" name="phone" placeholder="Телефон" class="pole"><br>
       <button type="submit" style="margin: 10px">Добавить</button>

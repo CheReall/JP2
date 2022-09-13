@@ -10,7 +10,7 @@
         <h1>Поиск по фамилии</h1>
         <form method="post" th:action="${'/teachers-search-process'}">
             <input type="text" name="surname" style="display: inline-block; width: 250px">
-            <button type="submit" style="display: inline-block; width: auto; height: auto"><img src="icon-search.png"></button>
+            <button type="submit" style="display: inline-block; width: auto; height: auto">Поиск</button>
         </form>
         <h2>_________________________________________________________</h2>
         <div th:each="el : ${result}">
