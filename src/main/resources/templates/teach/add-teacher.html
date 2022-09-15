@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <link rel="stylesheet" href="../styles.css">
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Title</title>
 </head>
@@ -9,12 +8,22 @@
   <header th:insert="blocks/headerTeachers"/>
   <div align="center">
     <h1 style="margin: 20px">Добавление преподавателя</h1>
-    <form th:action="${'/teacher-save'}" method="post"><br>
-      <input type="text" name="surname" placeholder="Фамилия" class="pole"><br>
-      <input type="text" name="name" placeholder="Имя" class="pole"><br>
-      <input type="text" name="middlename" placeholder="Отчество" class="pole"><br>
-      <input type="text" name="lessons" placeholder="Предметы" class="pole"><br>
-      <input type="text" name="graphic" placeholder="График работы" class="pole"><br>
+    <form th:action="${'/teacher-save'}" method="post" th:object="${teacherModel}">
+      <input th:field="*{surname}" type="text" name="surname" placeholder="Фамилия" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('surname')}" th:errors="*{surname}" class="pole"></div><br>
+
+      <input th:field="*{name}" type="text" name="name" placeholder="Имя" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('name')}" th:errors="*{name}" class="pole"></div><br>
+
+      <input th:field="*{middlename}" type="text" name="middlename" placeholder="Отчество" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('middlename')}" th:errors="*{middlename}" class="pole"></div><br>
+
+      <input th:field="*{lessons}" type="text" name="lessons" placeholder="Предметы" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('lessons')}" th:errors="*{lessons}" class="pole"></div><br>
+
+      <input th:field="*{graphic}" type="text" name="graphic" placeholder="График работы" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('graphic')}" th:errors="*{graphic}" class="pole"></div><br>
+
       <button type="submit" style="margin: 10px">Добавить</button>
     </form>
   </div>

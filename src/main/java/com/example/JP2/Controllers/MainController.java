@@ -7,10 +7,13 @@ import com.example.JP2.Repo.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -26,44 +29,44 @@ public class MainController {
     public String Home(Model model){
         return "homePage";
     }
-    @GetMapping("/teachers")
-    public String Teachers(Model model){
-        Iterable<TeacherModel> teachers = teacherRepository.findAll();
-        model.addAttribute("teachers", teachers);
-        return "teach/teachers";
-    }
     @GetMapping("/students")
     public String Students(Model model){
         Iterable<StudentModel> students = studentRepository.findAll();
         model.addAttribute("students", students);
         return "stud/students";
     }
+    @GetMapping("/teachers")
+    public String Teachers(Model model){
+        Iterable<TeacherModel> teachers = teacherRepository.findAll();
+        model.addAttribute("teachers", teachers);
+        return "teach/teachers";
+    }
 
     // Отображение форм добавления записи
-    @GetMapping("/add-teacher")
-    public String AddTeacher(Model model){
-        return "teach/add-teacher";
-    }
     @GetMapping("/add-student")
-    public String AddStudent(Model model){
+    public String AddStudent(TeacherModel teacherModel){
         return "stud/add-student";
+    }
+    @GetMapping("/add-teacher")
+    public String AddTeacher(StudentModel studentModel){
+        return "teach/add-teacher";
     }
 
     //    Обработка форм добавления студентов и преподавателей
     @PostMapping("/student-save")
-    public String SaveStudent(@RequestParam String surname, @RequestParam String name,
-                              @RequestParam String middlename, @RequestParam String birthday,
-                              @RequestParam String gruppa, @RequestParam Long phone, Model model){
-        StudentModel student = new StudentModel(surname, name, middlename, birthday, gruppa, phone);
-        studentRepository.save(student);
+    public String SaveStudent(@ModelAttribute("studentModel")@Valid StudentModel studentModel, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "stud/add-student";
+        }
+        studentRepository.save(studentModel);
         return "redirect:/students";
     }
     @PostMapping("/teacher-save")
-    public String SaveTeacher(@RequestParam String surname, @RequestParam String name,
-                              @RequestParam String middlename, @RequestParam String lessons,
-                              @RequestParam String graphic, Model model){
-        TeacherModel teacher = new TeacherModel(surname, name, middlename, lessons, graphic);
-        teacherRepository.save(teacher);
+    public String SaveTeacher(@ModelAttribute("teacherModel")@Valid TeacherModel teacherModel, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "teach/add-teacher";
+        }
+        teacherRepository.save(teacherModel);
         return "redirect:/teachers";
     }
 
@@ -91,3 +94,4 @@ public class MainController {
         return "teach/search-theachers";
     }
 }
+

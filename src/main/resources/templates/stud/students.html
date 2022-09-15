@@ -15,7 +15,7 @@
             <h1 th:text="${el.name}" style="display: inline-block"></h1>
             <h1 th:text="${el.middlename}" style="display: inline-block"></h1>
             <h2 th:text="'Группа: '+${el.gruppa}"></h2>
-            <h2><a th:href="'/more-student/'+${el.ID}">Подробнее</a></h2>
+            <h2><a th:href="'/more-student/'+${el.ID}" style="color: grey; font-size: 20px">Подробнее...</a></h2>
             <h2>_________________________________________________________</h2>
         </div>
         <h2><a href="/add-student">Добавить студента</a></h2>

@@ -1,22 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <link rel="stylesheet" href="cssStyles.css">
   <title>Title</title>
 </head>
 <body style="background-color: #FFF8E7">
   <header th:insert="blocks/headerStudents"/>
   <div align="center">
     <h1 style="margin: 20px">Добавление студента</h1>
-    <form th:action="${'/student-save'}" method="post">
-      <input type="text" name="surname" placeholder="Фамилия" class="pole"><br>
-      <input type="text" name="name" placeholder="Имя" class="pole"><br>
-      <input type="text" name="middlename" placeholder="Отчество" class="pole"><br>
+
+    <form th:action="${'/student-save'}" method="post" th:object="${studentModel}">
+      <input th:field="*{surname}" type="text" name="surname" placeholder="Фамилия" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('surname')}" th:errors="*{surname}" class="pole"></div><br>
+
+      <input th:field="*{name}" type="text" name="name" placeholder="Имя" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('name')}" th:errors="*{name}" class="pole"></div><br>
+
+      <input th:field="*{middlename}" type="text" name="middlename" placeholder="Отчество" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('middlename')}" th:errors="*{middlename}" class="pole"></div><br>
+
       <h style="font-family: ‘Open Sans’, sans-serif; font-size: 15pt">Дата рождения</h><br>
-      <input type="Date" name="birthday" style="width: 250px; margin-bottom: 10px"><br>
-      <input type="text" name="gruppa" placeholder="Группа" class="pole"><br>
-      <input type="text" name="phone" placeholder="Телефон" class="pole"><br>
+      <input th:field="*{birthday}" type="Date" name="birthday" style="width: 250px; margin-bottom: 10px"><br>
+      <div th:if="*{#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="pole"></div><br>
+
+      <input th:field="*{gruppa}" type="text" name="gruppa" placeholder="Группа" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('gruppa')}" th:errors="*{gruppa}" class="pole"></div><br>
+
+      <input th:field="*{phone}" type="text" name="phone" placeholder="Телефон" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('phone')}" th:errors="*{phone}" class="pole"></div><br>
+
       <button type="submit" style="margin: 10px">Добавить</button>
     </form>
   </div>

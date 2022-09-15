@@ -4,13 +4,26 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.sql.Date;
 @Entity
 public class StudentModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String surname, name, middlename, gruppa, birthday;
+    @NotEmpty(message = "Заполните поле")
+    @Size(min = 1, max = 50, message = "От 1 до 50 символов")
+    private String surname, name, birthday;
+    @NotEmpty(message = "Заполните поле")
+    @Size(max = 10, message = "Максимум 10 символов")
+    private String gruppa;
+    @Size(max = 50, message = "Максимум 50 символов")
+    private String middlename;
+    @NotNull(message = "Заполните поле")
+    @Size(min = 11, max = 11, message = "Должно быть 11 символов. Формат 89588037507")
     private Long phone;
 
     public Long getID() {
