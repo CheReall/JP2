@@ -35,34 +35,30 @@ public class EdRemController {
 
     // Отображение форм редактирования
     @GetMapping("/edit-student/{id}")
-    public String StudentEditShow(@PathVariable(value = "id") long id, Model model){
-        StudentModel editStudent = studentRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Неверный ID - "+id));
+    public String StudentEditShow(@PathVariable("id") long id, Model model){
+        StudentModel editStudent = studentRepository.findById(id).orElseThrow(()->new IllegalArgumentException("Неверный ID - "+id));
         model.addAttribute("editStudent", editStudent);
         return "stud/edit-student";
     }
     @GetMapping("/edit-teacher/{id}")
-    public String TeacherEditShow(@PathVariable(value = "id") long id, Model model){
-        TeacherModel editTeacher = teacherRepository.findById(id).orElseThrow(() ->
-                new IllegalArgumentException("Неверный ID - "+id));
+    public String TeacherEditShow(@PathVariable("id") long id, Model model){
+        TeacherModel editTeacher = teacherRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Неверный ID - "+id));
         model.addAttribute("editTeacher", editTeacher);
         return "teach/edit-teacher";
     }
 
     //Обработка форм редактирования
     @PostMapping("/edit-student/{id}")
-    public String StudentEdit(@PathVariable(value = "id") long id, @ModelAttribute("studentModel")
-                                @Valid StudentModel studentModel, BindingResult bindingResult){
+    public String StudentEdit(@PathVariable("id") long id, @ModelAttribute("studentModel")@Valid StudentModel studentModel, BindingResult bindingResult){
         studentModel.setID(id);
         if(bindingResult.hasErrors()){
-            return "stud/edit-student";
+            return "/stud/edit-student";
         }
         studentRepository.save(studentModel);
         return "redirect:/students";
     }
     @PostMapping("/edit-teacher/{id}")
-    public String TeacherEdit(@PathVariable(value = "id") long id, @ModelAttribute("teacherModel")
-                              @Valid TeacherModel teacherModel, BindingResult bindingResult){
+    public String TeacherEdit(@PathVariable("id") long id, @ModelAttribute("teacherModel")@Valid TeacherModel teacherModel, BindingResult bindingResult){
         teacherModel.setID(id);
         if(bindingResult.hasErrors()){
             return "teach/edit-teacher";
@@ -73,13 +69,13 @@ public class EdRemController {
 
     //Обработка удаления
     @PostMapping("/remove-student/{id}")
-    public String StudentRemove(@PathVariable(value = "id") long id, Model model){
+    public String StudentRemove(@PathVariable("id") long id, Model model){
         StudentModel studentModel = studentRepository.findById(id).orElseThrow();
         studentRepository.delete(studentModel);
         return "redirect:/students";
     }
     @PostMapping("/remove-teacher/{id}")
-    public String TeacherRemove(@PathVariable(value = "id") long id, Model model){
+    public String TeacherRemove(@PathVariable("id") long id, Model model){
         TeacherModel teacherModel = teacherRepository.findById(id).orElseThrow();
         teacherRepository.delete(teacherModel);
         return "redirect:/teachers";

@@ -4,22 +4,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 @Entity
 public class TeacherModel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long ID;
-    @NotEmpty(message = "Заполните поле")
-    @Size(min = 1, max = 50, message = "От 1 до 50 символов")
-    private String surname, name, graphic;
-    @Size(max = 50, message = "До 50 символов")
-    private String middlename;
-    @NotEmpty(message = "Заполните поле")
-    @Size(min = 1, max = 250, message = "От 1 до 250 символов")
-    private String lessons;
+
+    private String surname, name, middlename, lessons, graphic;
+
     public Long getID() {
         return ID;
     }

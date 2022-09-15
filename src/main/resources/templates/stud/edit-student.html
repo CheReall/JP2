@@ -6,28 +6,29 @@
 </head>
 <body style="background-color: #FFF8E7">
   <header th:insert="blocks/headerStudents"/>
-  <div align="center">
+
+  <div align="center" th:each="el : ${editStudent}">
     <h1 style="margin: 20px">Редактирование записи</h1>
-    <form th:action="@{/edit-student/{id}(id=${studentModel.ID})}" method="post" th:object="${studentModel}">
 
-      <input th:field="*{surname}" th:value="${studentModel.getSurname()}" type="text" name="surname" placeholder="Фамилия" class="pole"><br>
-      <div th:if="*{#fields.hasErrors('surname')}" th:errors="*{surname}" class="pole"></div><br>
+    <form th:action="'/edit-student/'+${editStudent.ID}" method="post" th:object="${editStudent}">
+      <input th:field="*{surname}" th:value="${editStudent.getSurname()}" type="text" name="surname" placeholder="Фамилия" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('surname')}" th:errors="*{surname}"></div><br>
 
-      <input th:field="*{name}" th:value="${studentModel.getName()}" type="text" name="name" placeholder="Имя" class="pole"><br>
-      <div th:if="*{#fields.hasErrors('name')}" th:errors="*{name}" class="pole"></div><br>
+      <input th:field="*{name}" th:value="${editStudent.getName()}" type="text" name="name" placeholder="Имя" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('name')}" th:errors="*{name}"></div><br>
 
-      <input th:field="*{middlename}" th:value="${studentModel.getMiddlename()}" type="text" name="middlename" placeholder="Отчество" class="pole"><br>
-      <div th:if="*{#fields.hasErrors('middlename')}" th:errors="*{middlename}" class="pole"></div><br>
+      <input th:field="*{middlename}" th:value="${editStudent.getMiddlename()}" type="text" name="middlename" placeholder="Отчество" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('middlename')}" th:errors="*{middlename}"></div><br>
 
       <h style="font-family: ‘Open Sans’, sans-serif; font-size: 15pt">Дата рождения</h><br>
-      <input th:field="*{birthday}" th:value="${studentModel.getBirthday()}" type="Date" name="birthday" style="width: 250px; margin-bottom: 10px"><br>
-      <div th:if="*{#fields.hasErrors('birthday')}" th:errors="*{birthday}" class="pole"></div><br>
+      <input th:field="*{birthday}" th:value="${editStudent.getBirthday()}" type="Date" name="birthday" style="width: 250px; margin-bottom: 10px"><br>
+      <div th:if="*{#fields.hasErrors('birthday')}" th:errors="*{birthday}"></div><br>
 
-      <input th:field="*{gruppa}" th:value="${studentModel.getGruppa()}" type="text" name="gruppa" placeholder="Группа" class="pole"><br>
-      <div th:if="*{#fields.hasErrors('gruppa')}" th:errors="*{gruppa}" class="pole"></div><br>
+      <input th:field="*{gruppa}" th:value="${editStudent.getGruppa()}" type="text" name="gruppa" placeholder="Группа" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('gruppa')}" th:errors="*{gruppa}"></div><br>
 
-      <input th:field="*{phone}" th:value="${studentModel.getPhone()}" type="text" name="phone" placeholder="Телефон" class="pole"><br>
-      <div th:if="*{#fields.hasErrors('phone')}" th:errors="*{phone}" class="pole"></div><br>
+      <input th:field="*{phone}" th:value="${editStudent.getPhone()}" type="text" name="phone" placeholder="Телефон" class="pole"><br>
+      <div th:if="*{#fields.hasErrors('phone')}" th:errors="*{phone}"></div><br>
       <button type="submit">Сохранить изменения</button>
     </form>
   </div>

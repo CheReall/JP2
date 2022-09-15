@@ -22,9 +22,9 @@ public class StudentModel {
     private String gruppa;
     @Size(max = 50, message = "Максимум 50 символов")
     private String middlename;
-    @NotNull(message = "Заполните поле")
-    @Size(min = 11, max = 11, message = "Должно быть 11 символов. Формат 89588037507")
-    private Long phone;
+    @NotEmpty(message = "Заполните поле")
+    @Size(min = 16, max = 16, message = "Не соответствуие формату +7(___)___-__-__")
+    private String phone;
 
     public Long getID() {
         return id;
@@ -73,16 +73,16 @@ public class StudentModel {
         this.gruppa = gruppa;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
     public StudentModel(String surname, String name, String middlename,
-                        String birthday, String gruppa, Long phone) {
+                        String birthday, String gruppa, String phone) {
         this.surname = surname;
         this.name = name;
         this.middlename = middlename;

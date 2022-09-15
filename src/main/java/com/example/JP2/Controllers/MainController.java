@@ -44,11 +44,11 @@ public class MainController {
 
     // Отображение форм добавления записи
     @GetMapping("/add-student")
-    public String AddStudent(TeacherModel teacherModel){
+    public String AddStudent(StudentModel studentModel){
         return "stud/add-student";
     }
     @GetMapping("/add-teacher")
-    public String AddTeacher(StudentModel studentModel){
+    public String AddTeacher(TeacherModel teacherModel){
         return "teach/add-teacher";
     }
 
