@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового адреса</title>
+</head>
+<body style="background-color: #FFF8E7">
+<div th:insert="blocks/mainShablon"></div>
+
+<div align="center">
+    <h1 style="margin: 20px">Добавление группы</h1>
+    <form th:action="${'/grupps/add'}" method="post">
+        <select  name="student" style="margin: 20px">
+            <div th:each="el : ${students}">
+                <option th:value="${el.id}" th:text="${el.surname + ' ' + el.name +' '+ el.middlename}"></option>
+            </div>
+        </select>
+        <br>
+        <select  name="gruppas" style="margin: 20px">
+            <div th:each="pro : ${gruppa}">
+                <option th:value="${pro.id}" th:text="${pro.title}"></option>
+            </div>
+        </select>
+        <br>
+        <button type="submit">Добавить студента в группу</button>
+    </form>
+</div>
+
+</body>
+<style>
+    h1{
+        color: #111;
+        font-family: ‘Helvetica Neue’, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+    }
+    h2{
+        color: #111;
+        font-family: ‘Open Sans’, sans-serif;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+</style>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Адресы</title>
+</head>
+<body style="background-color: #FFF8E7">
+<div th:insert="blocks/mainShablon"></div>
+
+<div align="center">
+    <h1 style="margin: 20px">Все адреса</h1>
+    <h2 style="margin: 5px"><a href="/adres/add"> Добавить адрес</a></h2>
+    <h2>_________________________________________________________</h2>
+    <table>
+        <div th:each="el : ${adress}">
+            <h2 th:text="${el.getAdres()}" ></h2>
+            <form th:action="'/adres/' + ${el.getId()} + '/remove'" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+            <h2>_________________________________________________________</h2>
+        </div>
+    </table>
+</div>
+
+</body>
+<style>
+    h1{
+        color: #111;
+        font-family: ‘Helvetica Neue’, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+    }
+    h2{
+        color: #111;
+        font-family: ‘Open Sans’, sans-serif;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+</style>
+</html>

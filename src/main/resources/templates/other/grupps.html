@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" >
+    <title>Группы</title>
+</head>
+<body style="background-color: #FFF8E7">
+<div th:insert="blocks/mainShablon"></div>
+
+<div align="center">
+    <h1 style="margin: 20px">Все группы</h1>
+    <h4 style="margin: 5px"><a href="/grupps/add"> Добавить группу</a></h4>
+    <h2>_________________________________________________________</h2>
+    <table>
+        <div th:each="el : ${gruppa}">
+            <h2 th:text="${'Группа: '+el.getTitle()}" style="margin-left: 10px"></h2>
+            <h3 th:each="pro : ${students}" th:text="${'ФИО: '+pro.getSurname()}" style="display: inline-block;margin-left: 10px"></h3>
+            <h3 th:each="pro : ${students}" th:text="${pro.getName()}" style="display: inline-block"></h3>
+            <h3 th:each="pro : ${students}" th:text="${pro.getMiddlename()}" style="display: inline-block"></h3>
+            <form th:action="'/grupps/' + ${el.getId()} + '/remove'" method="post">
+                <button type="submit">Удалить</button>
+            </form>
+            <h2>_________________________________________________________</h2>
+        </div>
+    </table>
+</div>
+
+</body>
+<style>
+    h1{
+        color: #111;
+        font-family: ‘Helvetica Neue’, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+    }
+    h2{
+        color: #111;
+        font-family: ‘Open Sans’, sans-serif;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+    h3{
+        color: #363636;
+        font-family: ‘Open Sans’, sans-serif;
+        font-style: italic;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+</style>
+</html>

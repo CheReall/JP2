@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Добавление нового университета</title>
+</head>
+<body style="background-color: #FFF8E7">
+<div th:insert="blocks/mainShablon"></div>
+
+<div align="center">
+    <h1 style="margin: 20px">Добавление университета</h1>
+    <form th:action="${'/university/add'}" method="post">
+        <input type="text" name="named" placeholder="Введите университет" style="margin: 20px">
+        <select  name="adres" style="margin: 20px">
+            <div th:each="el : ${adress}">
+                <option th:text="${el.adres}"></option>
+            </div>
+        </select>
+        <br>
+        <button type="submit">Добавить университет</button>
+    </form>
+</div>
+
+</body>
+<style>
+    h1{
+        color: #111;
+        font-family: ‘Helvetica Neue’, sans-serif;
+        font-size: 30px;
+        font-weight: bold;
+        letter-spacing: -1px;
+        line-height: 1;
+        text-align: center;
+    }
+    h2{
+        color: #111;
+        font-family: ‘Open Sans’, sans-serif;
+        font-size: 25px;
+        font-weight: 300;
+        line-height: 32px;
+        text-align: center;
+    }
+</style>
+</html>

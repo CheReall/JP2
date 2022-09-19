@@ -2,8 +2,10 @@ package com.example.JP2.Controllers;
 
 import com.example.JP2.Models.StudentModel;
 import com.example.JP2.Models.TeacherModel;
+import com.example.JP2.Models.University;
 import com.example.JP2.Repo.StudentRepository;
 import com.example.JP2.Repo.TeacherRepository;
+import com.example.JP2.Repo.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.time.LocalDate;
 
 @Controller
 public class MainController {
@@ -23,6 +26,8 @@ public class MainController {
     private TeacherRepository teacherRepository;
     @Autowired
     private StudentRepository studentRepository;
+    @Autowired
+    private UniversityRepository universityRepository;
 
 //     Отображение главных страниц
     @GetMapping("/")
@@ -33,6 +38,8 @@ public class MainController {
     public String Students(Model model){
         Iterable<StudentModel> students = studentRepository.findAll();
         model.addAttribute("students", students);
+        Iterable<University> universities = universityRepository.findAll();
+        model.addAttribute("university",universities);
         return "stud/students";
     }
     @GetMapping("/teachers")
@@ -44,7 +51,9 @@ public class MainController {
 
     // Отображение форм добавления записи
     @GetMapping("/add-student")
-    public String AddStudent(StudentModel studentModel){
+    public String AddStudent(StudentModel studentModel, Model model){
+        Iterable<University> universities = universityRepository.findAll();
+        model.addAttribute("university",universities);
         return "stud/add-student";
     }
     @GetMapping("/add-teacher")
@@ -54,10 +63,15 @@ public class MainController {
 
     //    Обработка форм добавления студентов и преподавателей
     @PostMapping("/student-save")
-    public String SaveStudent(@ModelAttribute("studentModel")@Valid StudentModel studentModel, BindingResult bindingResult){
+    public String SaveStudent(@ModelAttribute("studentModel")@Valid StudentModel studentModel, @RequestParam Long universitys,
+                              BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
+            Iterable<University> universities = universityRepository.findAll();
+            model.addAttribute("university",universities);
             return "stud/add-student";
         }
+        University university = universityRepository.findById(universitys).orElseThrow();
+        studentModel.setUniversitys(university);
         studentRepository.save(studentModel);
         return "redirect:/students";
     }

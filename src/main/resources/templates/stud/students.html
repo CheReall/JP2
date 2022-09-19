@@ -7,14 +7,14 @@
 <body style="background-color: #FFF8E7">
     <header th:insert="blocks/mainShablon"/>
     <div align="center">
-        <h1 style="margin-top: 20px">Все студенты</h1>
+        <h1 style="margin: 20px">Все студенты</h1>
         <h2><a href="/students-search">Поиск по фамилии</a></h2>
         <h2>_________________________________________________________</h2>
         <div th:each="el : ${students}">
-            <h1 th:text="${el.surname}" style="display: inline-block"></h1>
-            <h1 th:text="${el.name}" style="display: inline-block"></h1>
-            <h1 th:text="${el.middlename}" style="display: inline-block"></h1>
-            <h2 th:text="'Группа: '+${el.gruppa}"></h2>
+            <h1 th:text="${el.getSurname()}" style="display: inline-block"></h1>
+            <h1 th:text="${el.getName()}" style="display: inline-block"></h1>
+            <h1 th:text="${el.getMiddlename()}" style="display: inline-block"></h1>
+            <h2 th:text="'Университет: '+${el.getUniversitys().getNamed()}"></h2>
             <h2><a th:href="'/more-student/'+${el.ID}">Подробнее</a></h2>
             <h2>_________________________________________________________</h2>
         </div>

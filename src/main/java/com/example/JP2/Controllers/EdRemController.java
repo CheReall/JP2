@@ -2,8 +2,10 @@ package com.example.JP2.Controllers;
 
 import com.example.JP2.Models.StudentModel;
 import com.example.JP2.Models.TeacherModel;
+import com.example.JP2.Models.University;
 import com.example.JP2.Repo.StudentRepository;
 import com.example.JP2.Repo.TeacherRepository;
+import com.example.JP2.Repo.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,6 +22,8 @@ public class EdRemController {
     private StudentRepository studentRepository;
     @Autowired
     private TeacherRepository teacherRepository;
+    @Autowired
+    private UniversityRepository universityRepository;
 
     @GetMapping("/more-student/{id}")
     public String MoreStudent(@PathVariable(value = "id") long id, Model model){
