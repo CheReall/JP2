@@ -12,7 +12,7 @@ import java.sql.Date;
 @Entity
 public class StudentModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotEmpty(message = "Заполните поле")
     @Size(min = 1, max = 50, message = "От 1 до 50 символов")

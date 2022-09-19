@@ -24,9 +24,9 @@ public class MainController {
     @Autowired
     private StudentRepository studentRepository;
 
-    // Отображение главных страниц
+//     Отображение главных страниц
     @GetMapping("/")
-    public String Home(Model model){
+    public String Welcome(Model model){
         return "homePage";
     }
     @GetMapping("/students")

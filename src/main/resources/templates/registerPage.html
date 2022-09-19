@@ -9,16 +9,15 @@
     <div align="center">
         <h1 style="margin: 20px">Регистрация</h1>
 
-        <form>
-            <input type="text" name="email" placeholder="Email" class="pole"><br>
-<!--            <div th:if="*{#fields.hasErrors('surname')}" th:errors="*{surname}"></div><br>-->
-            <input type="text" name="password" placeholder="Пароль" class="pole"><br>
-<!--            <div th:if="*{#fields.hasErrors('name')}" th:errors="*{name}"></div><br>-->
-            <input type="text" name="passwordRep" placeholder="Повторите пароль" class="pole"><br>
-<!--            <div th:if="*{#fields.hasErrors('name')}" th:errors="*{name}"></div><br>-->
-
-            <button type="submit" style="margin: 10px">Зарегистрироваться</button>
+        <div th:if="${#messages}">
+            <p th:text="${message}"></p>
+        </div>
+        <form th:action="@{/registration}" method="post">
+            <div><label> User Name : <input type="text" name="username" class="pole"/> </label></div>
+            <div><label> Password: <input type="password" name="password" class="pole"/> </label></div>
+            <div><input type="submit" value="Sign In"/></div>
         </form>
+
     </div>
 </body>
 

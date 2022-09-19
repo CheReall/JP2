@@ -20,8 +20,11 @@
                 <li><a href="/teachers" class="nav-link px-2 text-white">Преподаватели</a></li>
             </ul>
 
-            <div class="text-end">
-
+            <div class="col-md-3 text-end" style="display: inline-block">
+                <h th:inline="text" style="display: inline-block; margin-right: 20px">[[${#httpServletRequest.remoteUser}]]</h>
+                <form th:action="@{/logout}" method="post" style="display: inline-block">
+                    <input type="submit" value="Выйти" class="btn btn-primary">
+                </form>
             </div>
         </div>
     </div>
